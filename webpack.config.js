@@ -103,10 +103,4 @@ const commonjs2Config = {
 	devtool: "source-map"
 };
 
-module.exports = [output: {
-  path: path.resolve(__dirname, 'dist'),
-  filename: 'mylib.bundle.js',
-  libraryTarget: 'umd',
-  library: 'MyLib',  // если нужно 'window.MyLib'
-},
-	]
+module.exports = [varConfig, commonjs2Config]
