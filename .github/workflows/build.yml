@@ -1,0 +1,33 @@
+name: Build WebGazer
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+  workflow_dispatch:
+
+jobs:
+  build_webgazer:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Check out code
+      uses: actions/checkout@v3
+
+    - name: Use Node.js 16
+      uses: actions/setup-node@v3
+      with:
+        node-version: 16
+
+    - name: Install dependencies
+      run: npm install
+
+    - name: Build (prod)
+      run: npm run build
+
+    - name: Upload dist
+      uses: actions/upload-artifact@v3
+      with:
+        name: webgazer-dist
+        path: build/
