@@ -1,4 +1,4 @@
-name: Build WebGazer
+name: Build Browser Bundle
 
 on:
   push:
@@ -8,7 +8,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  build_webgazer:
+  build_bundle:
     runs-on: ubuntu-latest
 
     steps:
@@ -24,13 +24,11 @@ jobs:
       run: npm install
 
     - name: Build (prod)
+      # Допустим, в package.json есть "scripts": { "build": "webpack --mode production" }
       run: npm run build
-
-    - name: List build folder
-      run: ls -R dist
 
     - name: Upload dist
       uses: actions/upload-artifact@v3
       with:
-        name: webgazer-dist
+        name: browser-dist
         path: dist/
