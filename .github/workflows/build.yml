@@ -2,9 +2,9 @@ name: Build WebGazer
 
 on:
   push:
-    branches: [ main, master ]
+    branches: [ master ]
   pull_request:
-    branches: [ main, master ]
+    branches: [ master ]
   workflow_dispatch:
 
 jobs:
@@ -26,8 +26,11 @@ jobs:
     - name: Build (prod)
       run: npm run build
 
+    - name: List build folder
+      run: ls -R dist
+
     - name: Upload dist
       uses: actions/upload-artifact@v3
       with:
         name: webgazer-dist
-        path: build/
+        path: dist/
